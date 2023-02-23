@@ -1,19 +1,21 @@
 # pic-lazy
 
-## Project setup
-```
-npm install
-```
+# 1、首先解释一下什么叫图片懒加载：
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+        我们使用软件的时候，会有很多图片需要加载，但是当网络环境不好，或内存不足的情况，就会导致用户首屏加载特别慢，影响用户体验，所以为了解决这个问题，提出了图片懒加载的方法来解决该问题。
 
-### Compiles and minifies for production
-```
-npm run build
-```
+# 2、解决思路：
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+        ①当图片区域到达用户界面可视区域的时候才进行加载图片
+
+        ②首屏加载时候img标签src赋为空值，这样就不会去渲染看不见的图片而浪费时间
+
+        ③当用户滑动到图片的可视区域后，替换src的路径，改为正式路径，则开始渲染图片
+
+# 3、好处：
+
+        这样做的好处就是可以使用当前网络环境来全力加载该可视区域的图片，增加加载速度；在图片没有到达可视区域的时候不会加载，避免浪费性能
+
+# 5、弊端
+
+        IntersectionObserver 方法可能没有兼容全浏览器，如果要实现兼容全浏览器，可以引入对应的插件实现
